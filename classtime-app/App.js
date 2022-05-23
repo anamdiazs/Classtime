@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import * as Google from 'expo-google-app-auth';
+import firebase from 'firebase';
+import Constants from 'expo-constants'
 
 export default function App() {
   return (
