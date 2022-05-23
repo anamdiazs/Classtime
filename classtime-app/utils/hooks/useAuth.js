@@ -1,6 +1,6 @@
 import React from 'react'
 import { getAuth, onAuthStateChanged, User} from 'firebase/auth'
-import { useState } from 'react/cjs/react.production.min';
+import { useState } from 'react';
 
 const auth  =  getAuth();
 
