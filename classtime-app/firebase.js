@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: 'classtime-349918',
   storageBucket: 'project-id.appspot.com',
   messagingSenderId: 'sender-id',
-  appId: 'app-id',
+  appId: '1:874724046701:android:322d3877a8410f0099cc64',
   measurementId: 'G-measurement-id',
 };
 
