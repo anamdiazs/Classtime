@@ -16,7 +16,15 @@ export default function App(){
 
   const fetchFonts = () => {
     return Font.loadAsync({
+      'Inter-Thin': require('./assets/static/Inter-Thin.ttf'),
+      'Inter-ExtraLight': require('./assets/static/Inter-ExtraLight.ttf'),
+      'Inter-Light.ttf': require('./assets/static/Inter-Light.ttf'),
+      'Inter-Regular': require('./assets/static/Inter-Regular.ttf'),
+      'Inter-Medium': require('./assets/static/Inter-Medium.ttf'),
+      'Inter-SemiBold': require('./assets/static/Inter-semiBold.ttf'),
+      'Inter-Bold': require('./assets/static/Inter-Bold.ttf'),
       'Inter-ExtraBold': require('./assets/static/Inter-ExtraBold.ttf'),
+      'Inter-Black': require('./assets/static/Inter-Black.ttf'),
     });
   }
 

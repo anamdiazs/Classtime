@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   textTitle:{
-    fontFamily: 'Inter-ExtraBold',
-    color: 'red',
-    fontSize: 24
+    fontFamily: 'Inter-SemiBold',
+    color: 'black',
+    fontSize: 44,
   },
   input_login: {
     width: 350,
