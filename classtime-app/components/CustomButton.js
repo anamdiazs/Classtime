@@ -14,7 +14,6 @@ export default function CustomButton(props){
             justifyContent: 'center',
             borderRadius: 18,
             borderWidth: 2,
-            borderColor: 'rgba(0,0,0,0.45)',
             borderColor: 'black',
             marginBottom: 12,
             paddingBottom: 25,

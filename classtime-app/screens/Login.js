@@ -1,35 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { useFonts } from 'expo-font';
-
+import { StyleSheet, Text, View, Image } from 'react-native';
 import CustomButton from '../components/CustomButton';
+
 
 export default function Login({ navigation }) {
 
-
   async function login(){
-
     navigation.navigate("Main");
     }
+
+    
   return (
       <View style={styles.container}>
-        <Text style={styles.textTitle} >Classtime</Text>
-          
-        <TextInput 
-          style={styles.input_login} 
-          placeholder="Usuario"
-          secureTextEntry={false}></TextInput>
-
-        <TextInput style={styles.input_login} placeholder="Contraseña" secureTextEntry={true}></TextInput>
-          
+        <View style={styles.title_container}>
+          <Image style={{ width: 69, height: 69, marginRight:8, }} source={require("../assets/logo_paleta.svg")}/>
+          <Text style={styles.textTitle} >Classtime</Text>
+        </View>
+      
         <CustomButton text={"Sign in with Google"} action={login}/>
-          
-          
-          
-        <Text style={styles.texto_md}>Una app de estudiantes</Text>
-        <Text style={styles.texto_md}>para estudiantes</Text>
-    
+        <Text style={styles.message_start_down}>Una app de estudiantes</Text>
+        <Text style={styles.message_start_down}>para estudiantes</Text>
+        
         <StatusBar style="auto"/>
 
       </View>
@@ -38,6 +30,13 @@ export default function Login({ navigation }) {
 }
  
 const styles = StyleSheet.create({
+  title_container:{
+    alignItems:'center',
+    flexDirection:'row',
+    alignContent:'center',
+    justifyContent:'space-between',
+    paddingBottom: 35,
+  },
   container: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -50,35 +49,13 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 44,
   },
-  input_login: {
-    width: 350,
-    height: 50, 
-    backgroundColor: 'white',
-    borderColor: 'rgba(0,0,0,0.5)',
-    borderWidth: 1,
-    borderRadius: 15,
-    fontSize: 18,
-    paddingLeft: 10,
-    marginBottom: 20
-  },
-  boton_login:{
-    width: 170,
-    height: 45,
-    backgroundColor: 'rgba(255,100,000,0)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.5)',
-  },
-  texto_md:{
-    //backgroundColor: 'red',
-    
+  message_start_down:{
+    fontFamily: 'Inter-Light',
     display: 'flex',
     flexDirection: "row",
     width: 'auto',
     fontSize: 16,
-    color: '#000000',
+    color: 'black',
   },
 });
 
