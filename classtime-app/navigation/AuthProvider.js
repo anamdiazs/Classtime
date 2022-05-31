@@ -1,5 +1,5 @@
 import React from "react";
-import auth from 'firebase/auth'
+import auth from 'firebase/compat/auth'
 import { createContext } from "react";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useState } from 'react'
@@ -18,7 +18,8 @@ export const AuthProvider = ({ children }) => {
 				googleLogin: async () => {
 					try{
 						const { idToken } = await GoogleSignin.signIn();
-						const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+						const googleProvider = new GoogleAuthProvider
+						const googleCredential = googleProvider.credential(idToken);
 
 						await auth().signInWithCredential(googleCredential);
 
