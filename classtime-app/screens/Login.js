@@ -1,16 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import CustomButton from '../components/CustomButton';
+import  UserContext  from '../navigation/AuthProvider';
+import auth from 'firebase/auth'
 
 
 export default function Login({ navigation }) {
+	const {user, setUser, googleLogin} = useContext(UserContext)
+	const [initializing, setInitializing] = useState(true);
 
-  async function login(){
-    navigation.navigate("Main");
-    }
+	const onAuthStateChanged = (user) => {
+		setUser(user)
+		setInitializing(false)
+	}
 
-    
+	useEffect(() => {
+		const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+		return subscriber;
+	 }, []);
+
+	 initializing ? true : null
+
   return (
       <View style={styles.container}>
         <View style={styles.title_container}>
@@ -18,7 +29,7 @@ export default function Login({ navigation }) {
           <Text style={styles.textTitle} >Classtime</Text>
         </View>
       
-        <CustomButton text={"Sign in with Google"} action={login}/>
+        <CustomButton text={"Sign in with Google"}  onPress={ () => googleLogin()}/>
         <Text style={styles.message_start_down}>Una app de estudiantes</Text>
         <Text style={styles.message_start_down}>para estudiantes</Text>
         

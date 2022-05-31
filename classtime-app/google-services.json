@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "874724046701",
+    "project_id": "classtime-349918",
+    "storage_bucket": "classtime-349918.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874724046701:android:322d3877a8410f0099cc64",
+        "android_client_info": {
+          "package_name": "com.classtimeApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874724046701-g4a2pe53eedhsbuv5j31cf6i8u4g3a69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.classtimeApp",
+            "certificate_hash": "9f79f880e92770d77af578f483b44e31a1a09d78"
+          }
+        },
+        {
+          "client_id": "874724046701-1nj9dqeu6pqcu1nvth57lml1ra0t3cf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGAIlFPiM6fpytkJegzkltS_afCYLzNR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874724046701-1nj9dqeu6pqcu1nvth57lml1ra0t3cf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
