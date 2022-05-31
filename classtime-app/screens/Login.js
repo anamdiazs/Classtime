@@ -1,9 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useContext, useEffect } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import CustomButton from '../components/CustomButton';
 import  UserContext  from '../navigation/AuthProvider';
-import auth from 'firebase/auth'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 
 export default function Login({ navigation }) {
@@ -16,7 +17,7 @@ export default function Login({ navigation }) {
 	}
 
 	useEffect(() => {
-		const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+		const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
 		return subscriber;
 	 }, []);
 
