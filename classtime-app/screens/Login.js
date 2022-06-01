@@ -5,7 +5,10 @@ import CustomButton from '../components/CustomButton';
 import  UserContext  from '../navigation/AuthProvider';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { firebaseConfig } from '../firebase';
 
+const config = {};
+firebase.initializeApp(firebaseConfig);
 
 export default function Login({ navigation }) {
 	const {user, setUser, googleLogin} = useContext(UserContext)
@@ -22,6 +25,7 @@ export default function Login({ navigation }) {
 	 }, []);
 
 	 initializing ? true : null
+
 
   return (
       <View style={styles.container}>
