@@ -5,15 +5,16 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function CreateEvent() {
 	const [classData, setClassData] = useState({})
 
-	const storeClassData = async (classKey) => {
+	const storeClassData = async (classData) => {
 		try {
-			await AsyncStorage.setItem('@storage_Key', classKey)
-			AsyncStorage.setItem('classData', classData)
+			const classInfo = JSON.stringify(classData)
+			await AsyncStorage.setItem('classData', classInfo)
 		 } catch (err) {
 			 console.log(err);
 		 }
 
 	}	
+
 	return (
 		<View style={{
 			width: '100%',
