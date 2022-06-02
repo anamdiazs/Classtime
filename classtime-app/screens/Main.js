@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, Image, } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import Fillcardclass from '../components/Fillcardclass';
 
 
 const getCurrentDate=()=>{
@@ -109,14 +110,24 @@ export default function Main({ navigation }) {
             source={require('../assets/perfil.png')}/>
           </View>
         </View>
-        
         <StatusBar style="dark"></StatusBar>
         <Text style={styles.displayfecha}> {fecha} </Text>
         <Text style={styles.displayhora}>{hora}</Text>
+        
+        <Fillcardclass></Fillcardclass>
       </View>
   );
 }
- 
+
+/* 
+
+        <TouchableOpacity style={styles.buttonconatiner}>
+          <Image  style={styles.addbutton}source={require('../assets/button-add.png')}/>
+        </TouchableOpacity>
+
+*/
+
+
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -173,7 +184,21 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-Regular',
     fontSize: 16,
     color: '#000000',
-  }
+  },
+  addbutton:{
+    width: '100%',
+    height: '100%',
+  },
+  buttonconatiner:{
+    width: 50,
+    height: 50,
+    display: 'flex',
+    flexDirection: 'column',
+    alignSelf: 'flex-end',
+    marginRight: 33,
+    marginTop: '90%',
+    
 
+  }
 
 });
