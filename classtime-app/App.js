@@ -9,9 +9,7 @@ import Main from './screens/Main'
 import Photo from './screens/Photo'
 import  { AuthProvider }  from './navigation/AuthProvider';
 import { SafeAreaConsumer } from 'react-native-safe-area-context';
-// import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
-// GoogleSignin.configure();
 
 //Aqui inicia la sección de screens
 const Stack = createStackNavigator();
@@ -36,26 +34,23 @@ export default function App(){
 
   if(!fontsLoaded){
     return (
-    <AppLoading
-      startAsync={fetchFonts}
-      onFinish = {() =>{
-        setFontsLoaded(true);
-      }}
-      onError={console.warn}
-    />
+		<AppLoading
+			startAsync={fetchFonts}
+			onFinish = {() =>{
+			setFontsLoaded(true);
+			}}
+			onError={console.warn}
+		/>
     );
   }
 
   return(
-	//   <AuthProvider>
+	  <AuthProvider>
 			<NavigationContainer>
-				<Stack.Navigator screenOptions={{ 
-				headerStyle:{ backgroundColor:'rgba(255,177,244,1)'} }}>
+				<Stack.Navigator screenOptions={{ headerStyle:{ backgroundColor:'rgba(255,177,244,1)'} }}>
 				<Stack.Screen  name='Login' component={Login} options={{ headerShown: false }}/>
 				<Stack.Screen name='Main' component={Main}/>
-				
 				<Stack.Screen name='Photo' component={Photo}/>
-        
 				</Stack.Navigator>
 			</NavigationContainer>
 	//   </AuthProvider>
