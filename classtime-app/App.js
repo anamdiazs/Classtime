@@ -51,8 +51,8 @@ export default function App(){
 			<NavigationContainer>
 				<Stack.Navigator screenOptions={{ 
 				headerStyle:{ backgroundColor:'rgba(255,177,244,1)'} }}>
-				<Stack.Screen name='Main' component={Main}/>
 				<Stack.Screen  name='Login' component={Login} options={{ headerShown: false }}/>
+				<Stack.Screen name='Main' component={Main}/>
 				
 				<Stack.Screen name='Photo' component={Photo}/>
         
