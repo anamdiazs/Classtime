@@ -21,11 +21,11 @@ export default function Login({ navigation }) {
  
 	useEffect(() => {
 	  setMessage(JSON.stringify(response));
-	  console.log('RESPONSE......',JSON.stringify(response))
+	//   console.log('RESPONSE......',JSON.stringify(response))
 	  console.log(typeof(response))
 	  if (response?.type === "success") {
 		 setAccessToken(response.authentication.accessToken);
-		console.log('ACCESS TOKEN >>>>', accessToken)
+		// console.log('ACCESS TOKEN >>>>', accessToken)
 	  }
 	}, [response]);
  
@@ -35,19 +35,18 @@ export default function Login({ navigation }) {
 	  });
  
 	  userInfoResponse.json().then(data => {
-		console.log('SETTING USER DATA >>>>')
+		// console.log('SETTING USER DATA >>>>')
 		setUserInfo(data);
-		console.log('USER DATA SAVED >>>>')
-		navigation.navigate("Main")
+		// console.log('USER DATA SAVED >>>>')
+		navigation.navigate("Photo")
 	  });
 
-	  console.log(userInfo);
 	}
 
   return (
       <View style={styles.container}>
         <View style={styles.title_container}>
-          <Image style={{ width: 69, height: 69, marginRight:8, }} source={require("../assets/logo_paleta.svg")}/>
+          <Image style={{ width: 69, height: 69, marginRight:8, }} source={require("../assets/logo2_paleta.png")}/>
           <Text style={styles.textTitle} >Classtime</Text>
         </View>
 		  <Button 
@@ -57,8 +56,8 @@ export default function Login({ navigation }) {
       	/> 
         <Text style={styles.message_start_down}>Una app de estudiantes</Text>
         <Text style={styles.message_start_down}>para estudiantes</Text>
-        
         <StatusBar style="auto"/>
+
 
       </View>
 

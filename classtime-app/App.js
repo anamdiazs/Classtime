@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Login from './screens/Login'
 import Main from './screens/Main'
 import Photo from './screens/Photo'
+import Event from './screens/CreateEvent'
 import  { AuthProvider }  from './navigation/AuthProvider';
 import { SafeAreaConsumer } from 'react-native-safe-area-context';
 
@@ -37,7 +38,7 @@ export default function App(){
 		<AppLoading
 			startAsync={fetchFonts}
 			onFinish = {() =>{
-				setFontsLoaded(true);
+				setFontsLoaded(true)
 			}}
 			onError={console.warn}
 		/>
@@ -48,9 +49,10 @@ export default function App(){
 	  <AuthProvider>
 			<NavigationContainer>
 				<Stack.Navigator screenOptions={{ headerStyle:{ backgroundColor:'rgba(255,177,244,1)'} }}>
-				<Stack.Screen  name='Login' component={Login} options={{ headerShown: false }}/>
-				<Stack.Screen name='Main' component={Main}/>
-				<Stack.Screen name='Photo' component={Photo}/>
+					<Stack.Screen name='Login' component={Login} options={{ headerShown: false }}/>
+					<Stack.Screen name='Main' component={Main}/>
+					<Stack.Screen name='Photo' component={Photo}/>
+					<Stack.Screen name='Event' component={Event}/>
 				</Stack.Navigator>
 			</NavigationContainer>
 	   </AuthProvider>

@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect , useContext} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import Fillcardclass from '../components/Fillcardclass';
 import { UserContext} from '../navigation/AuthProvider'
 
 
@@ -94,8 +93,9 @@ export default function Main({ navigation }) {
   /* En esta sección con el setOptions puedes manipular la barra superior de forma
   independiente en vez de hacerlo en el App.js  */
 	const {userInfo, setUserInfo} = useContext(UserContext)
+	const picture = userInfo.picture
   useEffect(function(){
-    navigation.setOptions({ headerShow: true, });
+    navigation.setOptions({ headerShow: true});
   });
 
   return (
@@ -109,25 +109,20 @@ export default function Main({ navigation }) {
           <View style={styles.profilecont}>
             <Image
             style={styles.profile_image}
-            source={require('../assets/perfil.png')}/>
+            source={{uri:`${picture}`}}/>
           </View>
         </View>
         <StatusBar style="dark"></StatusBar>
         <Text style={styles.displayfecha}> {fecha} </Text>
         <Text style={styles.displayhora}>{hora}</Text>
-        
-        <Fillcardclass></Fillcardclass>
+			<TouchableOpacity style={styles.buttonconatiner} onPress={() => navigation.navigate('Event')}>
+				<Image  style={styles.addbutton}source={require('../assets/button-add.png')}/>
+			</TouchableOpacity>
       </View>
   );
 }
 
-/* 
 
-        <TouchableOpacity style={styles.buttonconatiner}>
-          <Image  style={styles.addbutton}source={require('../assets/button-add.png')}/>
-        </TouchableOpacity>
-
-*/
 
 
 const styles = StyleSheet.create({

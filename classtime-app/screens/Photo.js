@@ -1,19 +1,23 @@
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useContext} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { UserContext} from '../navigation/AuthProvider'
 
-export default function App() {
-
-
-
+export default function Photo({navigation}) {
+	const {userInfo, setUserInfo} = useContext(UserContext)
+	console.log(userInfo)
+	const picture = userInfo.picture
+	const name = userInfo.name
+	console.log('Picture', picture)
   return (
     <View style={styles.container}>
       <Image
         style={styles.custom_image}
-        source={require('../assets/perfil.png')}
+        source={{uri:`${picture}`}}
       />
-      <Text style={styles.text_welcome}>Bienvenido<Text style={styles.text_name}> Alejandro</Text></Text>
-      <TouchableOpacity style={styles.login_btn}>
+      <Text style={styles.text_welcome}>Bienvenido<Text style={styles.text_name}> {name}</Text></Text>
+      <TouchableOpacity style={styles.login_btn} onPress={() => navigation.navigate('Main')}>
         <Text style={{ fontSize: 16, color: "black" }}>Continuar</Text>
       </TouchableOpacity>
       <Text style={styles.text_down}>Una app de estudiantes</Text>
