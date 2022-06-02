@@ -6,6 +6,7 @@ import * as Font from 'expo-font'
 import { useState } from 'react';
 import Login from './screens/Login'
 import Main from './screens/Main'
+import Photo from './screens/Photo'
 import  { AuthProvider }  from './navigation/AuthProvider';
 import { SafeAreaConsumer } from 'react-native-safe-area-context';
 // import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
@@ -50,8 +51,11 @@ export default function App(){
 			<NavigationContainer>
 				<Stack.Navigator screenOptions={{ 
 				headerStyle:{ backgroundColor:'rgba(255,177,244,1)'} }}>
-				<Stack.Screen  name='Login' component={Login} options={{ headerShown: false }}/>
 				<Stack.Screen name='Main' component={Main}/>
+				<Stack.Screen  name='Login' component={Login} options={{ headerShown: false }}/>
+				
+				<Stack.Screen name='Photo' component={Photo}/>
+        
 				</Stack.Navigator>
 			</NavigationContainer>
 	//   </AuthProvider>
