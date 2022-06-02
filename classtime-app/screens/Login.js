@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import { Button } from 'react-native-elements';
+import {AuthProvider, UserContext} from '../navigation/AuthProvider'
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -11,12 +12,9 @@ WebBrowser.maybeCompleteAuthSession();
 // firebase.initializeApp(firebaseConfig);
 
 export default function Login({ navigation }) {
-	// const {userInfo, setUserInfo, googleLogin} = useContext(UserContext)
-	// const [initializing, setInitializing] = useState(true);
-
 	const [accessToken, setAccessToken] = useState("");
-	const [userInfo, setUserInfo] = useState("");
 	const [message, setMessage] = useState("");
+	const {userInfo, setUserInfo} = useContext(UserContext)
  
 	const [request, response, promptAsync] = Google.useAuthRequest({
 	  iosClientId: "874724046701-3jgh4bfnknk0qfrbik4mtkof4c2b6slj.apps.googleusercontent.com",
@@ -48,6 +46,8 @@ export default function Login({ navigation }) {
 		console.log('USER DATA SAVED >>>>')
 		navigation.navigate("Main")
 	  });
+
+	  console.log(userInfo);
 	}
 
  
@@ -59,6 +59,7 @@ export default function Login({ navigation }) {
           <Text style={styles.textTitle} >Classtime</Text>
         </View>
 		  <Button 
+		  	style = {{padding:50}}
         	title={accessToken ? "Go to my classes " : "Login with Google"}
         	onPress={accessToken ? getUserData : () => { promptAsync({useProxy: true, showInRecents: true}) }}
       	/> 
