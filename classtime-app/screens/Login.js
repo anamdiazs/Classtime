@@ -1,26 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import CustomButton from '../components/CustomButton';
-import  UserContext  from '../navigation/AuthProvider';
-import auth from 'firebase/auth'
+import { StyleSheet, Text, View, Image} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from 'expo-web-browser';
+import { Button } from 'react-native-elements';
+import { UserContext} from '../navigation/AuthProvider'
 
+WebBrowser.maybeCompleteAuthSession();
 
 export default function Login({ navigation }) {
-	const {user, setUser, googleLogin} = useContext(UserContext)
-	const [initializing, setInitializing] = useState(true);
-
-	const onAuthStateChanged = (user) => {
-		setUser(user)
-		setInitializing(false)
-	}
-
+	const [accessToken, setAccessToken] = useState("");
+	const [message, setMessage] = useState("");
+	const {userInfo, setUserInfo} = useContext(UserContext)
+ 
+	const [request, response, promptAsync] = Google.useAuthRequest({
+	  iosClientId: "874724046701-3jgh4bfnknk0qfrbik4mtkof4c2b6slj.apps.googleusercontent.com",
+	  expoClientId: "874724046701-ljnntm435f7jrf85fua5n49akgjpvupr.apps.googleusercontent.com",
+	  useProxy: true
+	});
+ 
 	useEffect(() => {
-		const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-		return subscriber;
-	 }, []);
+	  setMessage(JSON.stringify(response));
+	  console.log('RESPONSE......',JSON.stringify(response))
+	  console.log(typeof(response))
+	  if (response?.type === "success") {
+		 setAccessToken(response.authentication.accessToken);
+		console.log('ACCESS TOKEN >>>>', accessToken)
+	  }
+	}, [response]);
+ 
+	const getUserData = async () => {
+	  let userInfoResponse = await fetch("https://www.googleapis.com/userinfo/v2/me", {
+		 headers: { Authorization: `Bearer ${accessToken}`}
+	  });
+ 
+	  userInfoResponse.json().then(data => {
+		console.log('SETTING USER DATA >>>>')
+		setUserInfo(data);
+		console.log('USER DATA SAVED >>>>')
+		navigation.navigate("Main")
+	  });
 
-	 initializing ? true : null
+	  console.log(userInfo);
+	}
 
   return (
       <View style={styles.container}>
@@ -28,8 +50,11 @@ export default function Login({ navigation }) {
           <Image style={{ width: 69, height: 69, marginRight:8, }} source={require("../assets/logo_paleta.svg")}/>
           <Text style={styles.textTitle} >Classtime</Text>
         </View>
-      
-        <CustomButton text={"Sign in with Google"}  onPress={ () => googleLogin()}/>
+		  <Button 
+				style = {{padding:50}}
+				title={accessToken ? "Go to my classes " : "Login with Google"}
+				onPress={accessToken ? getUserData : () => { promptAsync({useProxy: true, showInRecents: true}) }}
+      	/> 
         <Text style={styles.message_start_down}>Una app de estudiantes</Text>
         <Text style={styles.message_start_down}>para estudiantes</Text>
         
@@ -67,6 +92,21 @@ const styles = StyleSheet.create({
     width: 'auto',
     fontSize: 16,
     color: 'black',
+	 paddingTop: 20,
+  },
+  login_btn:{
+    backgroundColor: 'white',
+    width: 152,
+    height: 58,
+    borderWidth: 2,
+    borderColor: '#000000',
+    borderRightColor: '#000000',
+    borderRightWidth: 5,
+    borderBottomWidth: 5,
+    borderBottomColor: '#000000',
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

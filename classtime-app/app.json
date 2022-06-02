@@ -19,11 +19,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-		"googleServicesFile": "./GoogleService-Info.plist"
-
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.classtimeApp",
+		"config": {
+			"googleSignIn": {
+			  "reservedClientId": "com.googleusercontent.apps.874724046701-3jgh4bfnknk0qfrbik4mtkof4c2b6slj"
+			}
+		 }
     },
     "android": {
-		"googleServicesFile": "./google-services.json",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -33,6 +38,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-	 "plugins": ["@react-native-google-signin/google-signin"]
+    "plugins": []
   }
 }
