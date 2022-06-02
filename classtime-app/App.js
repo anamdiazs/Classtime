@@ -37,7 +37,7 @@ export default function App(){
 		<AppLoading
 			startAsync={fetchFonts}
 			onFinish = {() =>{
-			setFontsLoaded(true);
+				setFontsLoaded(true);
 			}}
 			onError={console.warn}
 		/>
@@ -53,7 +53,7 @@ export default function App(){
 				<Stack.Screen name='Photo' component={Photo}/>
 				</Stack.Navigator>
 			</NavigationContainer>
-	//   </AuthProvider>
+	   </AuthProvider>
 	  
   );
 }
