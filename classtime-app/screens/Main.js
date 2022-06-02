@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
+import React, { useEffect , useContext} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Fillcardclass from '../components/Fillcardclass';
+import { UserContext} from '../navigation/AuthProvider'
 
 
 const getCurrentDate=()=>{
@@ -92,6 +93,7 @@ var fecha = getCurrentDate()
 export default function Main({ navigation }) {
   /* En esta sección con el setOptions puedes manipular la barra superior de forma
   independiente en vez de hacerlo en el App.js  */
+	const {userInfo, setUserInfo} = useContext(UserContext)
   useEffect(function(){
     navigation.setOptions({ headerShow: true, });
   });
