@@ -1,35 +1,14 @@
-// import React from "react";
-// import { createContext } from "react";
-// import { useState } from 'react'
-// import * as Google from 'expo-auth-session/providers/google';
-// import * as WebBrowser from 'expo-web-browser';
+import React, { useState, useContext, createContext } from "react";
 
-// WebBrowser.maybeCompleteAuthSession();
+export const UserContext = createContext();
 
-// export const UserContext = createContext();
+export const AuthProvider = ({children}) => {
+		const [userInfo, setUserInfo] = useState("")
+		return (
+			<UserContext.Provider value={{userInfo, setUserInfo}}>
+				{children}
+			</UserContext.Provider>
+	 
+		)
+	}
 
-// export const AuthProvider = ({ children }) => {
-	
-// 	return (
-// 		<UserContext.Provider
-// 		value = {{
-// 			userInfo,
-// 			setUserInfo, 
-// 			googleLogin: async () => {
-// 				try{
-
-// 					} catch(err){
-// 						console.log('Inside catch block' )
-// 						console.log('Something went wrong...', err)
-// 					}
-// 				}
-// 			}}
-// 		>
-// 			{children}
-// 		</UserContext.Provider>
-
-// 	)
-
-// }
-
-// export default UserContext
