@@ -8,6 +8,9 @@ import Login from './screens/Login'
 import Main from './screens/Main'
 import  { AuthProvider }  from './navigation/AuthProvider';
 import { SafeAreaConsumer } from 'react-native-safe-area-context';
+// import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+
+// GoogleSignin.configure();
 
 //Aqui inicia la sección de screens
 const Stack = createStackNavigator();
@@ -43,7 +46,7 @@ export default function App(){
   }
 
   return(
-	  <AuthProvider>
+	//   <AuthProvider>
 			<NavigationContainer>
 				<Stack.Navigator screenOptions={{ 
 				headerStyle:{ backgroundColor:'rgba(255,177,244,1)'} }}>
@@ -51,7 +54,7 @@ export default function App(){
 				<Stack.Screen name='Main' component={Main}/>
 				</Stack.Navigator>
 			</NavigationContainer>
-	  </AuthProvider>
+	//   </AuthProvider>
 	  
   );
 }

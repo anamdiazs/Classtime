@@ -1,39 +1,45 @@
-import React from "react";
-import auth from 'firebase/compat/auth'
-import { createContext } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
-import { useState } from 'react'
+// import React from "react";
+// import { createContext } from "react";
+// import { useState } from 'react'
+// import * as Google from 'expo-auth-session/providers/google';
+// import * as WebBrowser from 'expo-web-browser';
 
-export const UserContext = createContext();
+// WebBrowser.maybeCompleteAuthSession();
 
-export const AuthProvider = ({ children }) => {
+// export const UserContext = createContext();
 
-	const [user, setUser] = useState(null)
+// export const AuthProvider = ({ children }) => {
+	
+// 	const [accessToken, setAccessToken] = useState();
+// 	const [userInfo, setUserInfo] = useState();
+// 	const [message, setMessage] = useState();
+	
+// 	return (
+// 		<UserContext.Provider
+// 		value = {{
+// 			userInfo,
+// 			setUserInfo, 
+// 			googleLogin: async () => {
+// 				console.log('Inside google login')
+// 				try{
+// 					const [request, response, promptAsync] = Google.useAuthRequest({
+// 					iosClientId: "874724046701-3jgh4bfnknk0qfrbik4mtkof4c2b6slj.apps.googleusercontent.com",
+// 					expoClientId: "694235095257-7t7h7mv877d2jfu7r508ct1egmesbqdm.apps.googleusercontent.com"
+// 					});
 
-	return (
-		<UserContext.Provider
-			value = {{
-				user,
-				setUser, 
-				googleLogin: async () => {
-					try{
-						const { idToken } = await GoogleSignin.signIn();
-						const googleProvider = new GoogleAuthProvider
-						const googleCredential = googleProvider.credential(idToken);
 
-						await auth().signInWithCredential(googleCredential);
+// 					} catch(err){
+// 						console.log('Inside catch block' )
+// 						console.log('Something went wrong...', err)
+// 					}
+// 				}
+// 			}}
+// 		>
+// 			{children}
+// 		</UserContext.Provider>
 
-					} catch(err){
-						console.log('Something went wrong...', err)
-					}
-				}
-			}}
-		>
-			{children}
-		</UserContext.Provider>
+// 	)
 
-	)
+// }
 
-}
-
-export default UserContext
+// export default UserContext

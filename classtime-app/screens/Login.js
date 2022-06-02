@@ -1,31 +1,47 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button} from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import CustomButton from '../components/CustomButton';
-import  UserContext  from '../navigation/AuthProvider';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { firebaseConfig } from '../firebase';
+import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from 'expo-web-browser';
 
-const config = {};
-firebase.initializeApp(firebaseConfig);
+
+WebBrowser.maybeCompleteAuthSession();
+
+// const firebaseconfig = {};
+// firebase.initializeApp(firebaseConfig);
 
 export default function Login({ navigation }) {
-	const {user, setUser, googleLogin} = useContext(UserContext)
-	const [initializing, setInitializing] = useState(true);
+	// const {userInfo, setUserInfo, googleLogin} = useContext(UserContext)
+	// const [initializing, setInitializing] = useState(true);
 
-	const onAuthStateChanged = (user) => {
-		setUser(user)
-		setInitializing(false)
+	const [accessToken, setAccessToken] = useState();
+	const [userInfo, setUserInfo] = useState();
+	const [message, setMessage] = useState();
+ 
+	const [request, response, promptAsync] = Google.useAuthRequest({
+	  iosClientId: "874724046701-3jgh4bfnknk0qfrbik4mtkof4c2b6slj.apps.googleusercontent.com",
+	  expoClientId: "694235095257-7t7h7mv877d2jfu7r508ct1egmesbqdm.apps.googleusercontent.com"
+	});
+ 
+	useEffect(() => {
+	  setMessage(JSON.stringify(response));
+	  if (response === "success") {
+		 setAccessToken(response.authentication.accessToken);
+	  }
+	}, [response]);
+ 
+	const getUserData = async () => {
+	  let userInfoResponse = await fetch("https://www.googleapis.com/userinfo/v2/me", {
+		 headers: { Authorization: `Bearer ${accessToken}`}
+	  });
+ 
+	  userInfoResponse.json().then(data => {
+		 setUserInfo(data);
+	  });
 	}
 
-	useEffect(() => {
-		const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-		return subscriber;
-	 }, []);
-
-	 initializing ? true : null
-
+	console.log(userData)
+ 
 
   return (
       <View style={styles.container}>
@@ -33,8 +49,10 @@ export default function Login({ navigation }) {
           <Image style={{ width: 69, height: 69, marginRight:8, }} source={require("../assets/logo_paleta.svg")}/>
           <Text style={styles.textTitle} >Classtime</Text>
         </View>
-      
-        <CustomButton text={"Sign in with Google"}  onPress={ () => googleLogin()}/>
+		  <Button 
+        	title={accessToken ? "Get User Data" : "Login"}
+        	onPress={accessToken ? getUserData : () => { promptAsync({useProxy: false, showInRecents: true}) }}
+      	/> 
         <Text style={styles.message_start_down}>Una app de estudiantes</Text>
         <Text style={styles.message_start_down}>para estudiantes</Text>
         
